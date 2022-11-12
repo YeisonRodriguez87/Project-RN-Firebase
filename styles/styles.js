@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 16,
-    marginHorizontal: 10,
+    marginHorizontal: 20,
     justifyContent: 'center',
   },
   inputText: {
@@ -17,6 +17,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginBottom: 10,
     borderRadius: 10,
+    fontSize: 15
   },
   button: {
     paddingVertical: 12,
@@ -26,15 +27,24 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
   },
   textButton: {
-    textAlign: 'center'
+    textAlign: 'center',
+    fontSize: 15
   },
   btnLogin: {
-    backgroundColor: '#2FB607',
+    backgroundColor: '#2394D9',
     marginBottom: 50
   },
   btnSignUp: {
-    backgroundColor: '#EB2D2D'
+    backgroundColor: '#EB2D2D',
+    marginBottom: 50
   },
+  btnSet: {
+    textAlign: 'center',
+    fontSize: 15
+  },
+  error: {
+    color: 'red'
+  }
 });
 
 

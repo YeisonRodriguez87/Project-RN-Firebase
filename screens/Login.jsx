@@ -1,23 +1,37 @@
-import { View, Text, TextInput, TouchableHighlight } from 'react-native';
+import { View, Text, TextInput, TouchableHighlight, Pressable } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { styles } from '../styles/styles';
-import { Formik } from 'formik';
+import { ErrorMessage, Formik } from 'formik';
+import { useNavigation } from '@react-navigation/native';
+import { loginValidate } from '../validations/validate';
 
 
 export default function Login({ navigation }) {
+    const navigate = useNavigation()
     const [user, setUser] = useState({});
+    const [isNewUser, setIsNewUser] = useState(false)
 
     const handleRegister = (values) => {
+        console.log('Register')
+        console.log(JSON.stringify(values, null, 2));
+    }
+
+    const handleLogin = (values) => {
+        console.log('Login')
         console.log(JSON.stringify(values, null, 2));
     }
 
     return (
         <Formik
-            initialValues={{ email: '', password: '' }}
-            onSubmit={values => handleRegister(values)}
+            initialValues={{
+                email: '',
+                password: ''
+            }}
+            validationSchema={loginValidate}
+            onSubmit={values => {isNewUser ? handleRegister(values) : handleLogin(values)}}
         >
             {({
-                handleChange, handleBlur, handleSubmit, values
+                handleChange, handleBlur, handleSubmit, values, errors, touched
             }) => (
                 <View style={styles.container}>            
                 <TextInput
@@ -27,7 +41,8 @@ export default function Login({ navigation }) {
                     name='email'
                     value={values.email}
                     keyboardType={'email-address'}
-                />          
+                />  
+                {errors.email && touched.email && (<Text style={styles.error}>{errors.email}</Text>)}   
                 <TextInput
                     placeholder='Contraseña'
                     style={styles.inputText}
@@ -36,17 +51,22 @@ export default function Login({ navigation }) {
                     value={values.password}
                     secureTextEntry={true}
                 />
-                
-                <TouchableHighlight style={[styles.button, styles.btnLogin]} onPress={handleSubmit} >
-                    <Text style={styles.textButton}>Ingresar</Text>
+                {errors.password && touched.password && (<Text style={styles.error}>{errors.password}</Text>)}
+                <TouchableHighlight style={isNewUser?  [styles.button, styles.btnSignUp]: [styles.button, styles.btnLogin]} onPress={handleSubmit} >
+                    {isNewUser ?
+                        <Text style={styles.textButton}>Registrarse</Text>
+                        :
+                        <Text style={styles.textButton}>Ingresar</Text>
+                    }                    
                 </TouchableHighlight>
                     
-
-
-                <Text>¿No estás registrado?</Text>
-                <TouchableHighlight style={[styles.button, styles.btnSignUp]} onPress={() => navigation.navigate('SignUp')} >
-                    <Text style={styles.textButton}>Registrate</Text>
-                </TouchableHighlight>
+                <Pressable onPress={() => setIsNewUser((prev => !prev))}>
+                    {isNewUser ?
+                        <Text style={styles.btnSet}>¿Ya tienes una cuenta?</Text>                        
+                        :
+                        <Text style={styles.btnSet}>¿Aún no tienes una cuenta?</Text>
+                    }    
+                </Pressable>
             </View>
             )}            
         </Formik>
