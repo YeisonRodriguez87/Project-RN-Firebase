@@ -7,7 +7,7 @@ import { loginValidate } from '../validations/validate';
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from '../firebase';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import userContext from '../userContext';
+import userContext from '../userContext.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const app = initializeApp(firebaseConfig);
@@ -33,25 +33,30 @@ export default function Login({ navigation }) {
     }, [])
 
     const handleRegister = (values) => {
-        console.log('Register')
-        console.log(JSON.stringify(values, null, 2));
         createUserWithEmailAndPassword(auth, values.email, values.password)
         .then(userCredentials => {
             console.log(userCredentials);
             setUser(prev => ({ ...prev, email: values.email }))
             storeUser(values.email)
         })
-        .catch(error => console.log(error))
-    }
-
-    const storeUser = async (user) => {
-
+        .catch(err => console.log(err))
     }
 
     const handleLogin = (values) => {
         console.log('Login')
         console.log(JSON.stringify(values, null, 2));
     }
+
+    const storeUser = async (user) => {
+        try {
+            const userEmail = JSON.stringify(user)
+            AsyncStorage.setItem('email', userEmail)
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    
 
     if (initializing) <ActivityIndicator />
 

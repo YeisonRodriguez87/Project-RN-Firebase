@@ -26,6 +26,11 @@ export const styles = StyleSheet.create({
     marginTop: 10,
     borderRadius: 8,
   },
+  text: {
+    textAlign: 'center',
+    fontSize: 15,
+    marginBottom: 20
+  },
   textButton: {
     textAlign: 'center',
     fontSize: 15
@@ -37,6 +42,14 @@ export const styles = StyleSheet.create({
   btnSignUp: {
     backgroundColor: '#EB2D2D',
     marginBottom: 50
+  },
+  btnLogOut: {
+    backgroundColor: 'red',
+    paddingVertical: 12,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    marginTop: 10,
+    borderRadius: 8,
   },
   btnSet: {
     textAlign: 'center',
