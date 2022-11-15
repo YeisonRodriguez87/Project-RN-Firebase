@@ -1,25 +1,59 @@
-import { View, Text, TextInput, TouchableHighlight, Pressable } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, TouchableHighlight, Pressable, ActivityIndicator } from 'react-native';
+import React, { useState, useEffect, useContext } from 'react';
 import { styles } from '../styles/styles';
-import { ErrorMessage, Formik } from 'formik';
+import { Formik } from 'formik';
 import { useNavigation } from '@react-navigation/native';
 import { loginValidate } from '../validations/validate';
+import { initializeApp } from 'firebase/app';
+import { firebaseConfig } from '../firebase';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import userContext from '../userContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(); 
+
+
 
 
 export default function Login({ navigation }) {
     const navigate = useNavigation()
-    const [user, setUser] = useState({});
     const [isNewUser, setIsNewUser] = useState(false)
+    const { user, setUser } = useContext(userContext);
+    const [initializing, setInitializing] = useState(true)
+
+    const stateChange = (user) => {
+        setUser(user)
+        if (initializing) setInitializing(false)
+    }
+
+    useEffect(() => {
+        const subscriber = auth.onAuthStateChanged(stateChange)
+        return subscriber;
+    }, [])
 
     const handleRegister = (values) => {
         console.log('Register')
         console.log(JSON.stringify(values, null, 2));
+        createUserWithEmailAndPassword(auth, values.email, values.password)
+        .then(userCredentials => {
+            console.log(userCredentials);
+            setUser(prev => ({ ...prev, email: values.email }))
+            storeUser(values.email)
+        })
+        .catch(error => console.log(error))
+    }
+
+    const storeUser = async (user) => {
+
     }
 
     const handleLogin = (values) => {
         console.log('Login')
         console.log(JSON.stringify(values, null, 2));
     }
+
+    if (initializing) <ActivityIndicator />
 
     return (
         <Formik
