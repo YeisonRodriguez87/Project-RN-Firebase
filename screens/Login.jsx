@@ -14,9 +14,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(); 
 
 
-
-
-export default function Login({ navigation }) {
+export default function Login() {
     const navigate = useNavigation()
     const [isNewUser, setIsNewUser] = useState(false)
     const { user, setUser } = useContext(userContext);
@@ -39,20 +37,25 @@ export default function Login({ navigation }) {
             setUser(prev => ({ ...prev, email: values.email }))
             storeUser(values.email)
         })
-        .catch(err => console.log(err))
+        .catch(error => console.log(error))
     }
 
     const handleLogin = (values) => {
-        console.log('Login')
-        console.log(JSON.stringify(values, null, 2));
+        signInWithEmailAndPassword(auth, values.email, values.password)
+        .then(userCredentials => {
+            console.log(userCredentials);
+            setUser(prev => ({ ...prev, email: values.email }))
+            storeUser(values.email)
+        })
+        .catch(error => console.log(error))
     }
 
     const storeUser = async (user) => {
         try {
             const userEmail = JSON.stringify(user)
             AsyncStorage.setItem('email', userEmail)
-        } catch (err) {
-            console.log(err);
+        } catch (error) {
+            console.log(error);
         }
     }
 
@@ -90,7 +93,10 @@ export default function Login({ navigation }) {
                     value={values.password}
                     secureTextEntry={true}
                 />
-                {errors.password && touched.password && (<Text style={styles.error}>{errors.password}</Text>)}
+                {errors.password && touched.password && (<Text style={styles.error}>{errors.password}</Text>)}                    
+                <Pressable onPress={() => navigate.navigate("ForgotPassword")}>
+                    <Text style={styles.btnSet}>¿Olvidaste tu contraseña?</Text>
+                </Pressable>
                 <TouchableHighlight style={isNewUser?  [styles.button, styles.btnSignUp]: [styles.button, styles.btnLogin]} onPress={handleSubmit} >
                     {isNewUser ?
                         <Text style={styles.textButton}>Registrarse</Text>
@@ -105,9 +111,9 @@ export default function Login({ navigation }) {
                         :
                         <Text style={styles.btnSet}>¿Aún no tienes una cuenta?</Text>
                     }    
-                </Pressable>
+                </Pressable>  
             </View>
-            )}            
+            )}
         </Formik>
     )
 }

@@ -55,6 +55,10 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 15
   },
+  textButton: {
+    textAlign: 'center',
+    fontSize: 15
+  },
   error: {
     color: 'red'
   }
