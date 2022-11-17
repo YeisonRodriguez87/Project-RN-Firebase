@@ -5,7 +5,7 @@ import { styles } from '../styles/styles'
 export default function About({ navigation }) {
   return (
     <View>
-      <Text>Nosotros</Text>
+      <Text>About</Text>
       <View style={styles.viewRow}>
           <TouchableNativeFeedback onPress={() => navigation.navigate('Home')}>  
             <Image 

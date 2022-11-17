@@ -77,7 +77,7 @@ export default function Login() {
             }) => (
                 <View style={styles.container}>            
                 <TextInput
-                    placeholder='Correo Electrónico'
+                    placeholder='Email'
                     style={styles.inputText}
                     onChangeText={handleChange('email')}
                     name='email'
@@ -86,7 +86,7 @@ export default function Login() {
                 />  
                 {errors.email && touched.email && (<Text style={styles.error}>{errors.email}</Text>)}   
                 <TextInput
-                    placeholder='Contraseña'
+                    placeholder='Password'
                     style={styles.inputText}
                     onChangeText={handleChange('password')}
                     name='password'
@@ -95,21 +95,21 @@ export default function Login() {
                 />
                 {errors.password && touched.password && (<Text style={styles.error}>{errors.password}</Text>)}                    
                 <Pressable onPress={() => navigate.navigate("ForgotPassword")}>
-                    <Text style={styles.btnSet}>¿Olvidaste tu contraseña?</Text>
+                    <Text style={styles.btnSet}>¿Did you forget your password?</Text>
                 </Pressable>
                 <TouchableHighlight style={isNewUser?  [styles.button, styles.btnSignUp]: [styles.button, styles.btnLogin]} onPress={handleSubmit} >
                     {isNewUser ?
-                        <Text style={styles.textButton}>Registrarse</Text>
+                        <Text style={styles.textButton}>Register</Text>
                         :
-                        <Text style={styles.textButton}>Ingresar</Text>
+                        <Text style={styles.textButton}>Log In</Text>
                     }                    
                 </TouchableHighlight>
                     
                 <Pressable onPress={() => setIsNewUser((prev => !prev))}>
                     {isNewUser ?
-                        <Text style={styles.btnSet}>¿Ya tienes una cuenta?</Text>                        
+                        <Text style={styles.btnSet}>¿You have an account??</Text>                        
                         :
-                        <Text style={styles.btnSet}>¿Aún no tienes una cuenta?</Text>
+                        <Text style={styles.btnSet}>¿Do not you have an account yet?</Text>
                     }    
                 </Pressable>  
             </View>

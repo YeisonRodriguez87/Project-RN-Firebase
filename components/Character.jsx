@@ -5,13 +5,11 @@ import { styles } from '../styles/styles'
 const Character = ({ item }) => {
     return (
         <View style={styles.container}>
+            <Text style={styles.text}>{item.name}</Text>
             <Image
                 style={styles.imgSize}
                 source={{uri: item.img}}
             />
-            <Text style={styles.text}>{item.name}</Text>
-            <Text style={styles.text}>{item.nickname}</Text>
-            <Text style={styles.text}>{item.status}</Text>
         </View>
     )
 }

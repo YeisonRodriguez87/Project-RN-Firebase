@@ -43,14 +43,14 @@ export default function App() {
         }}>
           {user?.email ?
             <>
-            <Stack.Screen name='Home' component={Home} options={{ title: 'Inicio' }} />
-            <Stack.Screen name='About' component={About} options={{ title: 'Nosotros' }} />
+            <Stack.Screen name='Home' component={Home} options={{ title: 'Home' }} />
+            <Stack.Screen name='About' component={About} options={{ title: 'About' }} />
             </>
             :
             <>
-              <Stack.Screen name='Login' component={Login} options={{title: 'Iniciar Sesión'}} />
+              <Stack.Screen name='Login' component={Login} options={{title: 'Log In'}} />
               
-              <Stack.Screen name='ForgotPassword' component={ForgotPassword} options={{ title: 'Recuperar contraseña' }} />
+              <Stack.Screen name='ForgotPassword' component={ForgotPassword} options={{ title: 'Recover password' }} />
             </>
           } 
         </Stack.Navigator>

@@ -12,7 +12,7 @@ const ForgotPassword = () => {
   function handleReset(values) {
     sendPasswordResetEmail(auth, values.email)
         .then(() => {
-            Alert.alert(`Enviamos un mensaje a ${values.email}`)
+            Alert.alert(`We send a message to recover your password to the mailbox ${values.email}`)
             navigate.navigate("Login")
         })
       .catch((err) => console.log(err))
@@ -30,7 +30,7 @@ const ForgotPassword = () => {
         <SafeAreaView style={styles.container}>
           <TextInput
             style={styles.inputText}
-            placeholder='Correo Electrónico'
+            placeholder='Email'
             placeholderTextColor={'darkslategray'}
             onChangeText={handleChange('email')}
             name="email"
@@ -40,7 +40,7 @@ const ForgotPassword = () => {
           {errors.email && (<Text style={styles.error}>{errors.email}</Text>)}
           <TouchableHighlight onPress={handleSubmit} style={[styles.button, styles.bgRebeccaPurple]} >
             {
-              <Text style={styles.textButton}>Recuperar Contraseña</Text>
+              <Text style={styles.textButton}>Recover password</Text>
             }
           </TouchableHighlight>
         </SafeAreaView>

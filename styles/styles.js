@@ -62,7 +62,7 @@ export const styles = StyleSheet.create({
   },
   imgSize: {
     alignSelf: 'center',
-    borderRadius: 10,
+    borderRadius: 25,
     width: '80%',
     height: 350
   },
@@ -83,7 +83,42 @@ export const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-evenly'
-  }
+  },
+  modalBack: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#000000a4',
+  },
+  modalView: {
+    width: 340,
+    backgroundColor: "lightgrey",
+    borderRadius: 20,
+    padding: 35,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 10,
+      height: 5
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  button: {
+    borderRadius: 15,
+    padding: 10,
+    elevation: 2,
+    marginTop: 10
+  },
+  buttonClose: {
+    backgroundColor: "#F5140D",
+  },
+  textButtonClose: {
+    textAlign: 'center',
+    fontSize: 15,
+    color: '#fff',
+    fontWeight: 'bold'
+  },
 });
 
 

@@ -1,5 +1,5 @@
-import { View, Text, Pressable, FlatList, ActivityIndicator, Image, TouchableNativeFeedback } from 'react-native';
-import React, { useContext } from 'react';
+import { View, Text, Pressable, FlatList, ActivityIndicator, Image, TouchableNativeFeedback, Modal, TouchableHighlight } from 'react-native';
+import React, { useContext, useState } from 'react';
 import userContext from '../userContext.js';
 import { getAuth } from 'firebase/auth';
 import { styles } from '../styles/styles';
@@ -13,6 +13,8 @@ const url = 'https://www.breakingbadapi.com/api/characters'
 const Home = ({ navigation }) => {
   const [data, error, isLoading] = useGetCharacters(url)
   const { user, setUser } = useContext(userContext)
+  const [modalVisible, setModalVisible] = useState(false)
+  const [character, setCharacter] = useState({})
   
   const logout = () => {
     auth.signOut()
@@ -46,19 +48,71 @@ const Home = ({ navigation }) => {
     (
       <View style={styles.container}>
         <View>
-          <Text style={styles.text}>Hola👋 {user.email}</Text>
+          <Text style={styles.text}>Hello👋 {user.email}</Text>
           <Pressable style={styles.btnLogOut} onPress={logout}>
-            <Text style={styles.textButton}>Cerrar Sesión</Text>
+            <Text style={styles.textButton}>Log Out</Text>
           </Pressable>
-        </View>
+        </View>      
+          
+
+        <Modal
+          animationType='fade'
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => setModalVisible(!modalVisible)}
+        >
+          <View style={styles.modalBack}>
+            <View style={styles.modalView}>
+              <Image
+                style={styles.imgSize}
+                source={{uri: character.img}}
+                />
+              <Text style={styles.text}>{character.name}</Text>
+              <Text style={styles.text}>{character.nickname}</Text>
+              <Text style={styles.text}>{character.birthday}</Text>
+              <Text style={styles.text}>{character.status}</Text>
+              <Text style={styles.text}>{character.portrayed}</Text>
+                
+              <Pressable
+                style={[styles.button, styles.buttonClose]}
+                onPress={() => setModalVisible(!modalVisible)}
+              >
+                <Text style={styles.textButtonClose}>Close</Text>
+              </Pressable>
+                
+
+            </View>
+          </View>
+          
+        </Modal>
+
         <FlatList
           data={data}
-            showsVerticalScrollIndicator={false}
-            ListHeaderComponent={
-              <Text style={styles.text}>Breaking Bad</Text>
+          showsVerticalScrollIndicator={false}
+          ListHeaderComponent={
+            <Text style={styles.text}>Breaking Bad</Text>
+          }
+            renderItem={({ item }) =>
+              <Pressable
+                onPress={() => {
+                  setModalVisible(!modalVisible)
+                  setCharacter(item)
+                }}
+              >
+                <Character
+                  key={item.char_id}
+                  item={item}                
+                />
+              </Pressable>
             }
-            renderItem={({item}) => <Character key={item.char_id} item={item}/>}
         />
+          
+
+
+
+
+
+
         <View style={styles.viewRow}>
           <TouchableNativeFeedback onPress={() => navigation.navigate('Home')}>  
             <Image 
