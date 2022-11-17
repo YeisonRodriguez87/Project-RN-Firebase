@@ -59,6 +59,12 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 15
   },
+  imgSize: {
+    alignSelf: 'center',
+    borderRadius: 10,
+    width: '80%',
+    height: 350
+  },
   error: {
     color: 'red'
   }

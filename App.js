@@ -2,7 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './screens/Login.jsx';
 import Home from './screens/Home.jsx';
-import Auth from './screens/Auth.jsx';
+import About from './screens/About.jsx';
 import ForgotPassword from './screens/ForgotPassword.jsx';
 import userContext from './userContext.js';
 import { useState, useEffect } from 'react';
@@ -42,11 +42,14 @@ export default function App() {
           }
         }}>
           {user?.email ?
-            <Stack.Screen name='Auth' component={Auth} options={{ title: 'Bienvenid@' }} />
+            <>
+            <Stack.Screen name='Home' component={Home} options={{ title: 'Inicio' }} />
+            <Stack.Screen name='About' component={About} options={{ title: 'Nosotros' }} />
+            </>
             :
             <>
               <Stack.Screen name='Login' component={Login} options={{title: 'Iniciar Sesión'}} />
-              <Stack.Screen name='Home' component={Home} options={{ title: 'Inicio' }} />
+              
               <Stack.Screen name='ForgotPassword' component={ForgotPassword} options={{ title: 'Recuperar contraseña' }} />
             </>
           } 
