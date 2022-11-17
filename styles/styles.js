@@ -50,6 +50,7 @@ export const styles = StyleSheet.create({
     borderColor: '#ccc',
     marginTop: 10,
     borderRadius: 8,
+    marginHorizontal: 125
   },
   btnSet: {
     textAlign: 'center',
@@ -67,6 +68,21 @@ export const styles = StyleSheet.create({
   },
   error: {
     color: 'red'
+  },
+  tabIcon: {
+    alignSelf: 'center',
+    width: 40,
+    height: 40
+  },
+  viewRow: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+  },
+  container2: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly'
   }
 });
 

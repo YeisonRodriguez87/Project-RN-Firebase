@@ -1,4 +1,4 @@
-import { View, Text, Pressable, FlatList, ActivityIndicator } from 'react-native';
+import { View, Text, Pressable, FlatList, ActivityIndicator, Image, TouchableNativeFeedback } from 'react-native';
 import React, { useContext } from 'react';
 import userContext from '../userContext.js';
 import { getAuth } from 'firebase/auth';
@@ -13,7 +13,7 @@ const url = 'https://www.breakingbadapi.com/api/characters'
 const Home = ({ navigation }) => {
   const [data, error, isLoading] = useGetCharacters(url)
   const { user, setUser } = useContext(userContext)
-  console.log({data});
+  
   const logout = () => {
     auth.signOut()
     .then(() => {
@@ -45,20 +45,33 @@ const Home = ({ navigation }) => {
     ):
     (
       <View style={styles.container}>
-        <Text style={styles.text}>Hola👋 {user.email}</Text>
-        <Pressable style={styles.btnLogOut} onPress={logout}>
-          <Text style={styles.textButton}>Cerrar Sesión</Text>
-        </Pressable>
+        <View>
+          <Text style={styles.text}>Hola👋 {user.email}</Text>
+          <Pressable style={styles.btnLogOut} onPress={logout}>
+            <Text style={styles.textButton}>Cerrar Sesión</Text>
+          </Pressable>
+        </View>
         <FlatList
           data={data}
             showsVerticalScrollIndicator={false}
             ListHeaderComponent={
-              <Text style={styles.text}>All Characters</Text>
+              <Text style={styles.text}>Breaking Bad</Text>
             }
             renderItem={({item}) => <Character key={item.char_id} item={item}/>}
         />
-        <View>
-          
+        <View style={styles.viewRow}>
+          <TouchableNativeFeedback onPress={() => navigation.navigate('Home')}>  
+            <Image 
+              style={styles.tabIcon}
+              source={require('../assets/home.png')}
+            />
+          </TouchableNativeFeedback>
+          <TouchableNativeFeedback onPress={() => navigation.navigate('About')}>  
+            <Image 
+              style={styles.tabIcon}
+              source={require('../assets/about.png')}
+            />
+          </TouchableNativeFeedback>
         </View>        
       </View>
     )
