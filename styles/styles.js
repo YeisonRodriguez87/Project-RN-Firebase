@@ -2,6 +2,12 @@ import { StyleSheet } from 'react-native';
 
 
 export const styles = StyleSheet.create({
+  imageBackground: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    opacity: 0.9
+  },
   container: {
     flex: 1,
     marginTop: 16,
@@ -19,6 +25,18 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     fontSize: 15
   },
+  inputTextSearch: {
+    height: 50,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    paddingHorizontal: 20,
+    color: 'black',
+    backgroundColor: '#fff',
+    marginBottom: 10,
+    borderRadius: 10,
+    fontSize: 15,
+    width: '70%'
+  },
   button: {
     paddingVertical: 12,
     borderWidth: 1,
@@ -31,12 +49,20 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     marginBottom: 20
   },
+  textAbout: {
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    textAlign: 'center',
+    fontSize: 15,
+    marginBottom: 20
+  },
   textButton: {
     textAlign: 'center',
-    fontSize: 15
+    fontSize: 17,
+    color: '#F0F7F5'
   },
   btnLogin: {
-    backgroundColor: '#2394D9',
+    backgroundColor: '#C0CA27',
     marginBottom: 50
   },
   btnSignUp: {
@@ -44,27 +70,32 @@ export const styles = StyleSheet.create({
     marginBottom: 50
   },
   btnLogOut: {
-    backgroundColor: 'red',
+    backgroundColor: '#DE2917',
     paddingVertical: 12,
     borderWidth: 1,
     borderColor: '#ccc',
     marginTop: 10,
     borderRadius: 8,
-    marginHorizontal: 125
+    marginHorizontal: 150,
+    marginVertical: 30
   },
   btnSet: {
     textAlign: 'center',
-    fontSize: 15
-  },
-  textButton: {
-    textAlign: 'center',
-    fontSize: 15
+    fontSize: 16,
+    color: '#F0F7F5',
+    fontWeight: 'bold'
   },
   imgSize: {
     alignSelf: 'center',
     borderRadius: 25,
     width: '80%',
     height: 350
+  },
+  imgModal: {
+    alignSelf: 'center',
+    borderRadius: 15,
+    width: '80%',
+    height: 280
   },
   error: {
     color: 'red'
@@ -111,13 +142,44 @@ export const styles = StyleSheet.create({
     marginTop: 10
   },
   buttonClose: {
-    backgroundColor: "#F5140D",
+    backgroundColor: "#DE2917",
   },
   textButtonClose: {
     textAlign: 'center',
     fontSize: 15,
-    color: '#fff',
+    color: '#F0F7F5',
     fontWeight: 'bold'
+  },
+  subheading: {
+    textTransform: 'uppercase',
+    fontSize: 15,
+    fontWeight: '700',
+    textAlign: 'center',
+    marginTop: 15,
+    marginBottom: 8,
+    borderBottomWidth: .5,
+    borderBottomColor: 'black'
+  },
+  subheadingCard: {
+    textTransform: 'uppercase',
+    fontSize: 18,
+    fontWeight: '600',
+    textAlign: 'center',
+    marginTop: 20,
+    marginBottom: 10,
+  },
+  separator: {
+    marginTop: 5,
+    marginBottom: 5
+  },
+  title: {
+    textTransform: 'uppercase',
+    fontSize: 20,
+    fontWeight: '700',
+    textAlign: 'center',
+    marginTop: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: 'black'
   },
 });
 

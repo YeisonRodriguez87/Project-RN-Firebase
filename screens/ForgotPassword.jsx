@@ -1,8 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { Formik } from "formik";
-//import { forgotValidationSchema } from "../validation/validationSchema";
 import { forgotValidate } from "../validations/validate";
-import { SafeAreaView, TextInput, Text, TouchableHighlight, Alert } from "react-native";
+import { SafeAreaView, TextInput, Text, TouchableHighlight, Alert, ImageBackground } from "react-native";
 import { styles } from "../styles/styles";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth"
 const auth = getAuth()
@@ -27,24 +26,27 @@ const ForgotPassword = () => {
       {({
         handleChange, handleSubmit, values, errors
       }) => (
-        <SafeAreaView style={styles.container}>
-          <TextInput
-            style={styles.inputText}
-            placeholder='Email'
-            placeholderTextColor={'darkslategray'}
-            onChangeText={handleChange('email')}
-            name="email"
-            value={values.email}
-            keyboardType={'email-address'}
-          />
-          {errors.email && (<Text style={styles.error}>{errors.email}</Text>)}
-          <TouchableHighlight onPress={handleSubmit} style={[styles.button, styles.bgRebeccaPurple]} >
-            {
-              <Text style={styles.textButton}>Recover password</Text>
-            }
-          </TouchableHighlight>
-        </SafeAreaView>
-
+        <>
+          <ImageBackground source={require('../assets/BreakindBadForgot.png')} resizeMode='cover' style={styles.imageBackground}>
+            <SafeAreaView style={styles.container}>
+              <TextInput
+                style={styles.inputText}
+                placeholder='Email'
+                placeholderTextColor={'darkslategray'}
+                onChangeText={handleChange('email')}
+                name="email"
+                value={values.email}
+                keyboardType={'email-address'}
+              />
+              {errors.email && (<Text style={styles.error}>{errors.email}</Text>)}
+              <TouchableHighlight onPress={handleSubmit} style={[styles.button, styles.btnLogin]} >
+                {
+                  <Text style={styles.textButton}>Recover password</Text>
+                }
+              </TouchableHighlight>
+            </SafeAreaView>
+          </ImageBackground>
+        </>
       )}
     </Formik>
   )

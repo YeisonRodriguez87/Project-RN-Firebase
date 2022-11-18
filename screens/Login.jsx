@@ -1,4 +1,4 @@
-import { View, Text, TextInput, TouchableHighlight, Pressable, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, TouchableHighlight, Pressable, ActivityIndicator, ImageBackground } from 'react-native';
 import React, { useState, useEffect, useContext } from 'react';
 import { styles } from '../styles/styles';
 import { Formik } from 'formik';
@@ -57,9 +57,7 @@ export default function Login() {
         } catch (error) {
             console.log(error);
         }
-    }
-
-    
+    }    
 
     if (initializing) <ActivityIndicator />
 
@@ -73,46 +71,50 @@ export default function Login() {
             onSubmit={values => {isNewUser ? handleRegister(values) : handleLogin(values)}}
         >
             {({
-                handleChange, handleBlur, handleSubmit, values, errors, touched
+                handleChange, handleSubmit, values, errors, touched
             }) => (
-                <View style={styles.container}>            
-                <TextInput
-                    placeholder='Email'
-                    style={styles.inputText}
-                    onChangeText={handleChange('email')}
-                    name='email'
-                    value={values.email}
-                    keyboardType={'email-address'}
-                />  
-                {errors.email && touched.email && (<Text style={styles.error}>{errors.email}</Text>)}   
-                <TextInput
-                    placeholder='Password'
-                    style={styles.inputText}
-                    onChangeText={handleChange('password')}
-                    name='password'
-                    value={values.password}
-                    secureTextEntry={true}
-                />
-                {errors.password && touched.password && (<Text style={styles.error}>{errors.password}</Text>)}                    
-                <Pressable onPress={() => navigate.navigate("ForgotPassword")}>
-                    <Text style={styles.btnSet}>¿Did you forget your password?</Text>
-                </Pressable>
-                <TouchableHighlight style={isNewUser?  [styles.button, styles.btnSignUp]: [styles.button, styles.btnLogin]} onPress={handleSubmit} >
-                    {isNewUser ?
-                        <Text style={styles.textButton}>Register</Text>
-                        :
-                        <Text style={styles.textButton}>Log In</Text>
-                    }                    
-                </TouchableHighlight>
-                    
-                <Pressable onPress={() => setIsNewUser((prev => !prev))}>
-                    {isNewUser ?
-                        <Text style={styles.btnSet}>¿You have an account??</Text>                        
-                        :
-                        <Text style={styles.btnSet}>¿Do not you have an account yet?</Text>
-                    }    
-                </Pressable>  
-            </View>
+                <>
+                    <ImageBackground source={require('../assets/BreakingBadLogin.png')} resizeMode='cover' style={styles.imageBackground}>
+                        <View style={styles.container}>                            
+                            <TextInput
+                                placeholder='Email'
+                                style={styles.inputText}
+                                onChangeText={handleChange('email')}
+                                name='email'
+                                value={values.email}
+                                keyboardType={'email-address'}
+                            />  
+                            {errors.email && touched.email && (<Text style={styles.error}>{errors.email}</Text>)}   
+                            <TextInput
+                                placeholder='Password'
+                                style={styles.inputText}
+                                onChangeText={handleChange('password')}
+                                name='password'
+                                value={values.password}
+                                secureTextEntry={true}
+                            />
+                            {errors.password && touched.password && (<Text style={styles.error}>{errors.password}</Text>)}                    
+                            <Pressable onPress={() => navigate.navigate("ForgotPassword")}>
+                                <Text style={styles.btnSet}>¿Did you forget your password?</Text>
+                            </Pressable>
+                            <TouchableHighlight style={isNewUser ?  [styles.button, styles.btnSignUp]: [styles.button, styles.btnLogin]} onPress={handleSubmit} >
+                                {isNewUser ?
+                                    <Text style={styles.textButton}>Register</Text>
+                                    :
+                                    <Text style={styles.textButton}>Log In</Text>
+                                }                    
+                            </TouchableHighlight>
+                                
+                            <Pressable onPress={() => setIsNewUser((prev => !prev))}>
+                                {isNewUser ?
+                                    <Text style={styles.btnSet}>¿You have an account??</Text>                        
+                                    :
+                                    <Text style={styles.btnSet}>¿Do not you have an account yet?</Text>
+                                }    
+                            </Pressable>                            
+                        </View>
+                    </ImageBackground>
+                </>
             )}
         </Formik>
     )

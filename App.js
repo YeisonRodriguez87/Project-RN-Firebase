@@ -34,8 +34,9 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator initialRouteName='Login' screenOptions={{
           headerStyle: {
-            backgroundColor: '#1A1D41',
+            backgroundColor: '#2A7C26',
           },
+          headerTitleAlign: 'start',
           headerTintColor: '#fff',
           headerTitleStyle: {
             fontWeight: 'bold',
@@ -48,7 +49,7 @@ export default function App() {
             </>
             :
             <>
-              <Stack.Screen name='Login' component={Login} options={{title: 'Log In'}} />
+              <Stack.Screen name='Login' component={Login} options={{title: 'Breaking Bad App'}} />
               
               <Stack.Screen name='ForgotPassword' component={ForgotPassword} options={{ title: 'Recover password' }} />
             </>

@@ -5,7 +5,7 @@ import { styles } from '../styles/styles'
 const Character = ({ item }) => {
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>{item.name}</Text>
+            <Text style={styles.subheadingCard}>{item.name}</Text>
             <Image
                 style={styles.imgSize}
                 source={{uri: item.img}}
