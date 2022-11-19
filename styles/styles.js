@@ -21,14 +21,16 @@ export const styles = StyleSheet.create({
     marginBottom: 50
   },
   btnLogOut: {
-    backgroundColor: '#DE2917',
-    paddingVertical: 12,
+    backgroundColor: '#EB2D2D',
+    paddingVertical: 10,
     borderWidth: 1,
-    borderColor: '#ccc',
-    marginTop: 10,
+    marginTop: 25,
     borderRadius: 8,
-    marginHorizontal: 150,
-    marginVertical: 30
+    marginHorizontal: 95,
+    marginVertical: 30,
+    alignSelf: 'center',
+    width: 70,
+    height: 45
   },
   btnSet: {
     textAlign: 'center',
@@ -37,7 +39,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   buttonClose: {
-    backgroundColor: "#DE2917",
+    backgroundColor: "#EB2D2D",
   },
   container: {
     flex: 1,
@@ -50,6 +52,12 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly'
   },
+  containerHelloAndLogout: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: .5
+  },
   error: {
     color: '#F0F7F5',
     fontWeight: 'bold'
@@ -59,6 +67,11 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     opacity: 0.9
+  },
+  imageBackgroundHome: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
   },
   imgSize: {
     alignSelf: 'center',
@@ -103,7 +116,7 @@ export const styles = StyleSheet.create({
   },
   modalView: {
     width: 340,
-    backgroundColor: "lightgrey",
+    backgroundColor: "#365C49",
     borderRadius: 20,
     padding: 35,
     shadowColor: "#000",
@@ -118,12 +131,13 @@ export const styles = StyleSheet.create({
   subheading: {
     textTransform: 'uppercase',
     fontSize: 15,
-    fontWeight: '700',
+    fontWeight: '600',
     textAlign: 'center',
     marginTop: 15,
-    marginBottom: 8,
-    borderBottomWidth: .5,
-    borderBottomColor: 'black'
+    marginBottom: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: '#F0F7F5',
+    color: '#F0F7F5'
   },
   subheadingCard: {
     textTransform: 'uppercase',
@@ -132,6 +146,7 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 20,
     marginBottom: 10,
+    color: '#F0F7F5'
   },
   separator: {
     marginTop: 5,
@@ -142,32 +157,40 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     marginBottom: 20
   },
+  textModal: {
+    textAlign: 'center',
+    fontSize: 15,
+    marginBottom: 10,
+    color: '#F0F7F5',
+    fontWeight: 'bold',
+  },
+  textGreeting: {
+    textAlign: 'left',
+    fontSize: 16,
+    marginBottom: 5,
+    color: '#F0F7F5'
+  },
   textAbout: {
     justifyContent: 'space-between',
     alignItems: 'center',
     textAlign: 'center',
     fontSize: 15,
-    marginBottom: 20,
-    marginTop: 20,
+    marginBottom: 30,
+    marginTop: 60,
     color: 'white',
     fontWeight: '600',
   },
   textButton: {
     textAlign: 'center',
     fontSize: 16,
-    color: '#F0F7F5'
+    color: '#F0F7F5',
+    fontWeight: '500'
   },  
   tabIcon: {
     alignSelf: 'center',
     width: 40,
     height: 40
-  },
-  textButtonClose: {
-    textAlign: 'center',
-    fontSize: 16,
-    color: '#F0F7F5',
-    fontWeight: 'bold'
-  },  
+  }, 
   title: {
     textTransform: 'uppercase',
     fontSize: 20,
@@ -175,7 +198,8 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 15,
     borderBottomWidth: 1,
-    borderBottomColor: 'black'
+    borderBottomColor: '#F0F7F5',
+    color: '#F0F7F5'
   },
   titleAbout: {
     textTransform: 'uppercase',

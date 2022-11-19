@@ -1,4 +1,4 @@
-import { View, Text, Pressable, FlatList, ActivityIndicator, Image, TouchableNativeFeedback, Modal } from 'react-native';
+import { View, Text, Pressable, FlatList, ActivityIndicator, Image, TouchableNativeFeedback, Modal, ImageBackground } from 'react-native';
 import React, { useContext, useEffect, useState } from 'react';
 import userContext from '../userContext.js';
 import { getAuth } from 'firebase/auth';
@@ -48,6 +48,7 @@ const Home = ({ navigation }) => {
     navigate.setOptions({
       headerSearchBarOptions: {
         placeholder: 'Search...',
+        tintColor: '#F0F7F5',
         onChangeText: (e) => handleQuery(e.nativeEvent.text)
       }
     })
@@ -75,78 +76,80 @@ const Home = ({ navigation }) => {
     
   return dataQuery &&
     (
-      <View style={styles.container}>
-        <View>
-          <Text style={styles.text}>¡Hello {user.email}👋!</Text>
-          <Pressable style={styles.btnLogOut} onPress={logout}>
-            <Text style={styles.textButton}>Log Out</Text>
-          </Pressable>
-        </View>
-        <Modal
-          animationType='fade'
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => setModalVisible(!modalVisible)}
-        >
-          <View style={styles.modalBack}>
-            <View style={styles.modalView}>
-              <Image
-                style={styles.imgModal}
-                source={{uri: character.img}}
-                />
-              <Text style={styles.subheading}>{character.name}</Text>
-              <Text style={styles.text}>Nickname: <Text>{character.nickname}</Text></Text>
-              <Text style={styles.text}>Occupation: {character.occupation}</Text>
-              <Text style={styles.text}>Birthday: {character.birthday}</Text>
-              <Text style={styles.text}>Status: {character.status}</Text>
-              <Text style={styles.text}>Portrayed: {character.portrayed}</Text> 
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={() => setModalVisible(!modalVisible)}
-              >
-                <Text style={styles.textButtonClose}>Close</Text>
-              </Pressable>
-            </View>
-          </View>          
-        </Modal> 
-        <FlatList
-          data={dataQuery}
-          showsVerticalScrollIndicator={false}
-            ListHeaderComponent={
-            <>
-              <Text style={styles.title}>Breaking Bad Characters</Text>
-            </>
-          }
-            renderItem={({ item }) =>
-              <Pressable
-                onPress={() => {
-                  setModalVisible(!modalVisible)
-                  setCharacter(item)
-                }}
-              >
-                <Character
-                  key={item.char_id}
-                  item={item}                
-                />
-              </Pressable>
+      <ImageBackground source={require('../assets/BreakingBadHome.png')} resizeMode='cover' style={styles.imageBackgroundHome}>
+        <View style={styles.container}>
+          <View style={styles.containerHelloAndLogout}>
+            <Text style={styles.textGreeting}>¡Hello, {user.email}👋!</Text>
+            <Pressable style={styles.btnLogOut} onPress={logout}>
+              <Text style={styles.textButton}>Log Out</Text>
+            </Pressable>
+          </View>
+          <Modal
+            animationType='fade'
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => setModalVisible(!modalVisible)}
+          >
+            <View style={styles.modalBack}>
+              <View style={styles.modalView}>
+                <Image
+                  style={styles.imgModal}
+                  source={{uri: character.img}}
+                  />
+                <Text style={styles.subheading}>{character.name}</Text>
+                <Text style={styles.textModal}>Nickname: <Text><Text>{character.nickname}</Text></Text></Text>
+                <Text style={styles.textModal}>Occupation: {character.occupation}</Text>
+                <Text style={styles.textModal}>Birthday: {character.birthday}</Text>
+                <Text style={styles.textModal}>Status: {character.status}</Text>
+                <Text style={styles.textModal}>Portrayed: {character.portrayed}</Text> 
+                <Pressable
+                  style={[styles.button, styles.buttonClose]}
+                  onPress={() => setModalVisible(!modalVisible)}
+                >
+                  <Text style={styles.textButton}>Close</Text>
+                </Pressable>
+              </View>
+            </View>          
+          </Modal> 
+          <FlatList
+            data={dataQuery}
+            showsVerticalScrollIndicator={false}
+              ListHeaderComponent={
+              <>
+                <Text style={styles.title}>Breaking Bad Characters</Text>
+              </>
             }
-            ItemSeparatorComponent={() => <View style={styles.separator} />}
-        />
-        <View style={styles.viewRow}>
-          <TouchableNativeFeedback onPress={() => navigation.navigate('Home')}>  
-            <Image 
-              style={styles.tabIcon}
-              source={require('../assets/home.png')}
-            />
-          </TouchableNativeFeedback>
-          <TouchableNativeFeedback onPress={() => navigation.navigate('About')}>  
-            <Image 
-              style={styles.tabIcon}
-              source={require('../assets/about.png')}
-            />
-          </TouchableNativeFeedback>
-        </View>        
-      </View>
+              renderItem={({ item }) =>
+                <Pressable
+                  onPress={() => {
+                    setModalVisible(!modalVisible)
+                    setCharacter(item)
+                  }}
+                >
+                  <Character
+                    key={item.char_id}
+                    item={item}                
+                  />
+                </Pressable>
+              }
+              ItemSeparatorComponent={() => <View style={styles.separator} />}
+          />
+          <View style={styles.viewRow}>
+            <TouchableNativeFeedback onPress={() => navigation.navigate('Home')}>  
+              <Image 
+                style={styles.tabIcon}
+                source={require('../assets/home.png')}
+              />
+            </TouchableNativeFeedback>
+            <TouchableNativeFeedback onPress={() => navigation.navigate('About')}>  
+              <Image 
+                style={styles.tabIcon}
+                source={require('../assets/about.png')}
+              />
+            </TouchableNativeFeedback>
+          </View>        
+        </View>
+      </ImageBackground>
     )
 }
 
