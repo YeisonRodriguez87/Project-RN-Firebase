@@ -23,7 +23,7 @@ const Home = ({ navigation }) => {
   
 
   const handleQuery = (str) => {
-    const query = data.filter(el => el.nickname.toLowerCase().includes(str.toLowerCase()) || el.name.toLowerCase().includes(str.toLowerCase()))
+    const query = data.filter(el => el.name.toLowerCase().includes(str.toLowerCase()))
     setDataQuery(prev => prev = query)
   }  
   
@@ -54,14 +54,30 @@ const Home = ({ navigation }) => {
     setDataQuery(data)
   }, [data])
 
-  if (isLoading) return <ActivityIndicator size={"large"} color={'#2DB63C'}/>
-  if (error) return <Text>{error}</Text> 
+
+  if (isLoading) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator
+          size={"large"}
+          color={'#2DB63C'}
+          />
+      </View>
+    )
+  }
+  if (error) {
+    return (
+      <View style={styles.container}>
+        <Text>{error}</Text>
+      </View>
+    )
+  } 
     
   return dataQuery &&
     (
       <View style={styles.container}>
         <View>
-          <Text style={styles.text}>¡Hello👋 {user.email}!</Text>
+          <Text style={styles.text}>¡Hello {user.email}👋!</Text>
           <Pressable style={styles.btnLogOut} onPress={logout}>
             <Text style={styles.textButton}>Log Out</Text>
           </Pressable>
@@ -80,7 +96,7 @@ const Home = ({ navigation }) => {
                 />
               <Text style={styles.subheading}>{character.name}</Text>
               <Text style={styles.text}>Nickname: <Text>{character.nickname}</Text></Text>
-              <Text style={styles.text}>Occupation: {character.occupation[0]}</Text>
+              <Text style={styles.text}>Occupation: {character.occupation}</Text>
               <Text style={styles.text}>Birthday: {character.birthday}</Text>
               <Text style={styles.text}>Status: {character.status}</Text>
               <Text style={styles.text}>Portrayed: {character.portrayed}</Text> 

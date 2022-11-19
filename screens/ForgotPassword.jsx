@@ -3,7 +3,7 @@ import { Formik } from "formik";
 import { forgotValidate } from "../validations/validate";
 import { SafeAreaView, TextInput, Text, TouchableHighlight, Alert, ImageBackground } from "react-native";
 import { styles } from "../styles/styles";
-import { getAuth, sendPasswordResetEmail } from "firebase/auth"
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 const auth = getAuth()
 
 const ForgotPassword = () => {
@@ -39,7 +39,7 @@ const ForgotPassword = () => {
                 keyboardType={'email-address'}
               />
               {errors.email && (<Text style={styles.error}>{errors.email}</Text>)}
-              <TouchableHighlight onPress={handleSubmit} style={[styles.button, styles.btnLogin]} >
+              <TouchableHighlight onPress={handleSubmit} style={[styles.button, styles.btnRecPass]} >
                 {
                   <Text style={styles.textButton}>Recover password</Text>
                 }

@@ -75,7 +75,8 @@ export default function Login() {
             }) => (
                 <>
                     <ImageBackground source={require('../assets/BreakingBadLogin.png')} resizeMode='cover' style={styles.imageBackground}>
-                        <View style={styles.container}>                            
+                        <View style={styles.container}> 
+                            {errors.email && touched.email && (<Text style={styles.error}>{errors.email}</Text>)}    
                             <TextInput
                                 placeholder='Email'
                                 style={styles.inputText}
@@ -83,8 +84,8 @@ export default function Login() {
                                 name='email'
                                 value={values.email}
                                 keyboardType={'email-address'}
-                            />  
-                            {errors.email && touched.email && (<Text style={styles.error}>{errors.email}</Text>)}   
+                            />
+                            {errors.password && touched.password && (<Text style={styles.error}>{errors.password}</Text>)}
                             <TextInput
                                 placeholder='Password'
                                 style={styles.inputText}
@@ -92,8 +93,7 @@ export default function Login() {
                                 name='password'
                                 value={values.password}
                                 secureTextEntry={true}
-                            />
-                            {errors.password && touched.password && (<Text style={styles.error}>{errors.password}</Text>)}                    
+                            />                    
                             <Pressable onPress={() => navigate.navigate("ForgotPassword")}>
                                 <Text style={styles.btnSet}>¿Did you forget your password?</Text>
                             </Pressable>
